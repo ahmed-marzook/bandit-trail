@@ -29,17 +29,28 @@ public class Main {
 
         while(running) {
 
-            if (notoriety >= 100 ) {
+            if (health <= 0) {
 
-                System.out.println("\n\tDue to your notoriety you were pointed out to the sheriff.\n\t YOU WERE CAUGHT");
-
-            }else if (notoriety < 0){ notoriety = 0; }
-
-
-                if (health <= 0) { // Checking if you have more than 0 health
                 System.out.println("\n\t YOU ARE DEAD");
                 break;
+
+            }else if(notoriety >= 100){
+
+                System.out.println("\n\tDue to your notoriety you were pointed out to the sheriff.\n\tYOU WERE CAUGHT");
+                break;
+
+            } else if (notoriety < 0){
+
+                notoriety = 0;
+                break;
+
+            } else if (money <= 0){
+
+                System.out.println("\n\tYou have run out of money.\n\tYOU STARVE");
+                break;
+
             }
+
 
             if (currentTown >= towns.length) { // When you finish the game this appears
 
