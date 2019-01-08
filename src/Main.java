@@ -12,7 +12,10 @@ public class Main {
         // Game variables
         String[] towns = {"Valentine", "Rhodes", "Lagras"};
         int currentTown = 0;
-        
+
+        // Shop variables
+        int amountOfSyringes = 4;
+
         // Player variables
         int health = 100;
         int money = 50;
@@ -26,11 +29,12 @@ public class Main {
                 System.out.println("\n\t YOU ARE DEAD");
                 break;
             }
+
             if (currentTown >= towns.length) {
 
                 System.out.println("You have finished the game with " + money + " gold. Well done!");
-
                 break;
+
             }
 
             System.out.println("Welcome to the city of " + towns[currentTown]);
@@ -52,23 +56,33 @@ public class Main {
 
                 System.out.println("\t1. Beer - 5 gold\n\t2. Syringe - 15 gold");
 
-                String inputshop = in.nextLine();
+                String inputShop = in.nextLine();
 
-                if (inputshop.equals("1")){
+                if (inputShop.equals("1")){
 
                     System.out.println("\nYou bought then drank the bottle of beer. ( -5 gold and -5 health, you did have some fun though)\n");
                     money = money - 5;
                     health = health - 5;
 
-                }else if (inputshop.equals("2")){
+                } else if (inputShop.equals("2")){
 
-                    System.out.println("\nYou bought then injected yourself with the dirty syringe. ( -15 gold and +10 health)\n");
-                    money = money - 15;
-                    health = health + 10;
+                    if (amountOfSyringes <= 0) {
+
+                        System.out.println("\tShopkeeper: There are no syringes left.\n");
+
+                    } else if (amountOfSyringes > 0) {
+
+                        System.out.println("\nYou bought then injected yourself with the dirty syringe. ( -15 gold and +10 health)\n");
+                        amountOfSyringes = amountOfSyringes - 1;
+                        money = money - 15;
+                        health = health + 10;
+
+                    }
 
                 } else System.out.println("\t\tinput not recognised please type '1' or '2'\n");
 
-            }else if (input.equals("2")){
+
+            } else if (input.equals("2")){
 
                 int outcome = rand.nextInt(10);
 
@@ -77,7 +91,7 @@ public class Main {
                     System.out.println("\tYou were caught robbing the bank! (You lose 20 health)\n");
                     health = health - 20;
 
-                }else if (outcome < 6){
+                } else if (outcome < 6){
 
                     System.out.println("\nYou robbed the bank! (You gained 60 gold.)\n");
                     money = money + 60;
@@ -94,7 +108,7 @@ public class Main {
                     System.out.println("\tYou were caught robbing the someone! (You lose 10 health)\n");
                     health = health - 10;
 
-                }else if (outcome < 8){
+                } else if (outcome < 8){
 
                     System.out.println("\nYou robbed someone! (You gained 15 gold.)\n");
                     money = money + 15;
