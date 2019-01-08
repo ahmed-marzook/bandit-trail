@@ -135,7 +135,7 @@ public class Main {
 
             } else if(input.equals("5")){
 
-                if(playerOwnsHorse == true) {
+                if(playerOwnsHorse) {
 
                     System.out.println("\n\tYou start your journey to the next town...\n");
                     currentTown = currentTown + 1;
