@@ -17,6 +17,7 @@ public class Main {
         int amountOfSyringes = 4;
 
         // Player variables
+        boolean playerOwnsHorse = false;
         int health = 100;
         int money = 50;
 
@@ -37,7 +38,7 @@ public class Main {
 
             }
 
-            System.out.println("Welcome to the city of " + towns[currentTown]);
+            System.out.println("You are currently in " + towns[currentTown]);
 
             System.out.println("\n\t# Your health is at " + health);
             System.out.println("\t# You have " + money + " gold");
@@ -45,7 +46,8 @@ public class Main {
             System.out.println("\t1. Browse the shop");
             System.out.println("\t2. Rob bank");
             System.out.println("\t3. Rob someone");
-            System.out.println("\t4. Travel to the next town\n");
+            System.out.println("\t4. Browse the stables");
+            System.out.println("\t5. Travel to the next town\n");
 
             String input = in.nextLine();
 
@@ -54,7 +56,7 @@ public class Main {
                 System.out.println("\tYou see a bottle of beer and a syringe on the shelf, it looks dirty.\n");
                 System.out.println("\tShopkeeper: Welcome, would you like to purchase?\n");
 
-                System.out.println("\t1. Beer - 5 gold\n\t2. Syringe - 15 gold");
+                System.out.println("\t# 1. Beer - 5 gold\n\t# 2. Syringe - 15 gold");
 
                 String inputShop = in.nextLine();
 
@@ -116,9 +118,30 @@ public class Main {
                 }
 
 
-            } else if( input.equals("4")){
+            } else if (input.equals("4")){
 
-                currentTown = currentTown + 1;
+                System.out.println("\tStablemaster: Welcome sir would you like to buy a horse?\n");
+                System.out.println("\t# 1. Purchase stallion - 50 gold\n\t# 2. Go back\n");
+
+                String inputStable = in.nextLine();
+
+                if (inputStable.equals("1")){
+
+                    System.out.println("\tYou have purchased a stallion! (You are now able to travel)\n");
+                    playerOwnsHorse = true;
+
+                }
+
+
+            } else if(input.equals("5")){
+
+                if(playerOwnsHorse == true) {
+
+                    System.out.println("\n\tYou start your journey to the next town...\n");
+                    currentTown = currentTown + 1;
+
+                } else System.out.println("\tYou have to own a horse to travel. (go to the stables to buy one)\n");
+
 
             } else System.out.println("\t\tinput not recognised please type '1' or '2'\n");
 
