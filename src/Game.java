@@ -93,6 +93,17 @@ public class Game {
     }
 
     public void robbery() {
+        if(myWeapon == "N/A"){
+            myHealth = myHealth - 10;
+            System.out.println("You attempt to rob someone but due to not having a weapon you lose.\n(-10 Health)");
+            enterScanner.nextLine();
+            firstTown();
+        } else if(myWeapon != "N/A"){
+            gold = gold + 10;
+            System.out.println("You successfully rob someone gaining some gold as well as not using any ammo.\n (+10G)");
+            enterScanner.nextLine();
+            firstTown();
+        }
 
     }
 }
