@@ -43,7 +43,6 @@ public class Main {
             } else if (notoriety < 0){
 
                 notoriety = 0;
-                break;
 
             } else if (money <= 0){
 
