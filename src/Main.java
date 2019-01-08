@@ -15,10 +15,15 @@ public class Main {
 
         boolean running = true;
 
-        System.out.println("Welcome to the city of Valentine");
+        System.out.println("Welcome to the city of Valentine\n");
 
         GAME:
         while(running){
+
+            if(health <= 0){
+                System.out.println("\n\t YOU ARE DEAD");
+                break;
+            }
 
             System.out.println("\t# Your health is at " + health);
             System.out.println("\t# You have " + money + " gold");
@@ -62,7 +67,7 @@ public class Main {
                 }
 
 
-            } else System.out.println("input not recognised please type '1' or '2'");
+            } else System.out.println("\t\tinput not recognised please type '1' or '2'\n");
 
         }
 
