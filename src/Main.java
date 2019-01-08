@@ -71,7 +71,7 @@ public class Main {
                 System.out.println("\tYou enter a goods store in town.\n");
                 System.out.println("\tShopkeeper: Welcome, would you like to purchase?\n");
 
-                System.out.println("\t# 1. Revolver - 20 gold\n\t# 2. Shotgun - 40 gold\n\t# 3. Mask - 5 gold\n\t# 4. Clothes - 10 gold\n\t# 5. Boat - 200 gold");
+                System.out.println("\t# 1. Revolver - 20 gold\n\t# 2. Shotgun - 40 gold\n\t# 3. Mask - 5 gold\n\t# 4. Clothes - 10 gold\n\t# 5. Boat - 200 gold\n\t# 6. Exit");
 
                 String inputShop = in.nextLine(); //                    GETTING INPUT FROM THE USER
 
