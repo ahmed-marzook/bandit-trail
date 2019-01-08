@@ -55,7 +55,7 @@ public class Main {
                     money = money - 15;
                     health = health + 10;
 
-                } else System.out.println("\t\tinput not recognised please type '1' or '2'\n");1
+                } else System.out.println("\t\tinput not recognised please type '1' or '2'\n");
 
             }else if (input.equals("2")){
 
