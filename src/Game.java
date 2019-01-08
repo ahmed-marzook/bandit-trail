@@ -49,7 +49,6 @@ public class Game {
         }
         if (choice == 4) {
             playerStats();
-            enterScanner.nextLine();
             firstTown();
         }
     }
@@ -68,14 +67,12 @@ public class Game {
             gold = gold - 40;
             myWeapon = "Rifle";
             System.out.println("Your Weapon is now a Rifle.\n(-40G from player inventory)");
-            enterScanner.nextLine();
             shop();
         }
         if (choice == 2) {
             gold = gold - 10;
             myWeapon = "Revolver";
             System.out.println("Your Weapon is now a Revolver.\n(-10G from player inventory)");
-            enterScanner.nextLine();
             shop();
         }
         if (choice == 3) {
@@ -84,7 +81,6 @@ public class Game {
             ammo = ammo + choice;
             gold = gold - choice;
             System.out.println("You now have " + ammo + " ammo\n(-" + choice + "G from player inventory");
-            enterScanner.nextLine();
             shop();
         }
         if (choice == 4) {
