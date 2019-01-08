@@ -5,7 +5,6 @@
 - Max Francis
 - Benjamin Kearns
 - Kwame Mintah
-- Yannis Fabri
 
 Project Summary: A text based adventure game based in the Wild West similar to that of Oregon Trail
 
