@@ -20,9 +20,11 @@ public class Main {
         boolean playerOwnsHorse = false;
         boolean freshClothes = false;
         boolean haircut = false;
+        boolean mask = false;
         int health = 100;
         int money = 50;
         int notoriety = 0;
+        int strength = 1;
 
         boolean running = true;
 
@@ -53,6 +55,7 @@ public class Main {
             System.out.println("\n\t# Your health is at " + health); // General text pop up
             System.out.println("\t# You have " + money + " gold");
             System.out.println("\t# You have " + notoriety + "% notoriety");
+            System.out.println("\t# You have " + strength + " strength");
             System.out.println("\t\nWhat would you like to do?");
             System.out.println("\t1. Browse the shop");
             System.out.println("\t2. Enter barbershop");
@@ -65,42 +68,57 @@ public class Main {
 
             if (input.equals("1")) { // Main screen input 1
 
-                System.out.println("\tYou see a bottle of beer and a syringe on the shelf, it looks dirty.\n");
+                System.out.println("\tYou enter a goods store in town.\n");
                 System.out.println("\tShopkeeper: Welcome, would you like to purchase?\n");
 
-                System.out.println("\t# 1. Beer - 5 gold\n\t# 2. Syringe - 15 gold\n\t# 3. A fresh set of clothes - 10 gold");
+                System.out.println("\t# 1. Revolver - 20 gold\n\t# 2. Shotgun - 40 gold\n\t# 3. Mask - 5 gold\n\t# 4. Clothes - 10 gold\n\t# 5. Boat - 200 gold");
 
                 String inputShop = in.nextLine(); //                    GETTING INPUT FROM THE USER
 
                 if (inputShop.equals("1")){ // SHOP INPUT 1
 
-                    System.out.println("\nYou bought then drank the bottle of beer. ( -5 gold & -5 health, you did have some fun though)\n");
-                    money = money - 5;
-                    health = health - 5;
+                    if (money >= 20) {
+                        money -= 20;
+                        System.out.println("\nYou bought a revolver (strength increased to 5)\n");
+                        strength = 5;
+                    } else System.out.println("\nYou cannot afford a revolver");
 
                 } else if (inputShop.equals("2")){ // SHOP INPUT 2
 
-                    if (amountOfSyringes <= 0) {
+                    if (money >= 40) {
+                        money -= 40;
+                        System.out.println("\nYou bought a shotgun (strength increased to 8\n");
+                        strength = 8;
+                    } else System.out.println("\nYou cannot afford a shotgun");
 
-                        System.out.println("\tShopkeeper: There are no syringes left.\n");
+                } else if (inputShop.equals("3")) {
 
-                    } else if (amountOfSyringes > 0) {
+                    if (money >= 5) {
+                        if (mask == false) {
+                            money -= 5;
+                            System.out.println("\nYou have bought a mask (this will hide your identity when commiting crimes)");
+                            mask = true;
+                        } else System.out.println("\n\tYou already own a mast.\n");
+                    } else System.out.println("\nYou cannot afford a mask");
 
-                        System.out.println("\nYou bought then injected yourself with the dirty syringe. ( - 15 gold & + 10 health)\n");
-                        amountOfSyringes = amountOfSyringes - 1;
-                        money = money - 15;
-                        health = health + 10;
+                } else if (inputShop.equals("4")) { // SHOP INPUT 3
 
-                    }
+                    if (money >= 10) {
+                        if (freshClothes == false) {
+                            money -= 10;
+                            System.out.println("\nYou have bought a fresh set of clothes. ( - 40% notoriety)\n");
+                            notoriety = notoriety - 40;
+                            freshClothes = true;
+                        } else System.out.println("\n\tYou have already bought clothes in this town.\n");
+                    } else System.out.println("\nYou cannot afford clothes");
 
-                } else if (inputShop.equals("3")) { // SHOP INPUT 3
+                } else if (inputShop.equals("5")) {
 
-                    if (freshClothes == false) {
-                        System.out.println("\nYou have bought a fresh set of clothes. ( - 40% notoriety)\n");
-                        notoriety = notoriety - 40;
-                        freshClothes = true;
-                    }else System.out.println("\n\tYou have already bought clothes in this town.\n");
-
+                    if (money >= 200) {
+                        money -= 200;
+                        System.out.println("\nCongratulations you have escaped the law!\n You escaped with " + money + " gold");
+                        System.exit(0);
+                    } else System.out.println("\nYou cannot afford a boat");
                 }
 
                 else System.out.println("\t\tinput not recognised please type '1' or '2'\n");
