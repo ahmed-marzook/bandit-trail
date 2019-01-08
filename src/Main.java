@@ -9,28 +9,39 @@ public class Main {
         Scanner in = new Scanner(System.in);
         Random rand = new Random();
 
+        // Game variables
+        String[] towns = {"Valentine", "Rhodes", "Lagras"};
+        int currentTown = 0;
+        
         // Player variables
         int health = 100;
         int money = 50;
 
         boolean running = true;
 
-        System.out.println("Welcome to the city of Valentine\n");
 
-        GAME:
         while(running) {
 
             if (health <= 0) {
                 System.out.println("\n\t YOU ARE DEAD");
                 break;
             }
+            if (currentTown >= towns.length) {
 
-            System.out.println("\t# Your health is at " + health);
+                System.out.println("You have finished the game with " + money + " gold. Well done!");
+
+                break;
+            }
+
+            System.out.println("Welcome to the city of " + towns[currentTown]);
+
+            System.out.println("\n\t# Your health is at " + health);
             System.out.println("\t# You have " + money + " gold");
             System.out.println("\t\nWhat would you like to do?");
             System.out.println("\t1. Browse the shop");
             System.out.println("\t2. Rob bank");
-            System.out.println("\t3. Rob someone\n");
+            System.out.println("\t3. Rob someone");
+            System.out.println("\t4. Travel to the next town\n");
 
             String input = in.nextLine();
 
@@ -43,15 +54,15 @@ public class Main {
 
                 String inputshop = in.nextLine();
 
-                if(inputshop.equals("1")){
+                if (inputshop.equals("1")){
 
                     System.out.println("\nYou bought then drank the bottle of beer. ( -5 gold and -5 health, you did have some fun though)\n");
                     money = money - 5;
                     health = health - 5;
 
-                }else if(inputshop.equals("2")){
+                }else if (inputshop.equals("2")){
 
-                    System.out.println("\nYou bought then injected yourself with the dirty syringe. ( -15 gold and 10 health)\n");
+                    System.out.println("\nYou bought then injected yourself with the dirty syringe. ( -15 gold and +10 health)\n");
                     money = money - 15;
                     health = health + 10;
 
@@ -90,6 +101,10 @@ public class Main {
 
                 }
 
+
+            } else if( input.equals("4")){
+
+                currentTown = currentTown + 1;
 
             } else System.out.println("\t\tinput not recognised please type '1' or '2'\n");
 
