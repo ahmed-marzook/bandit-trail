@@ -5,21 +5,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // System objects
+        // Controller objects
         Scanner in = new Scanner(System.in);
-        Random rand = new Random(); //RANDOM UTIL
 
-        // Game variables
+        // Town variables
+        Random rand = new Random(); //RANDOM UTIL
         String[] towns = {"Valentine", "Rhodes", "Lagras"}; //different towns
         int currentTown = 0;
-
-        // Shop variables
-        int amountOfSyringes = 4;
+        boolean freshClothes = false;
+        boolean haircut = false;
+        int amountOfSyringes = 2;
 
         // Player variables
         boolean playerOwnsHorse = false;
-        boolean freshClothes = false;
-        boolean haircut = false;
         int health = 100;
         int money = 50;
         int notoriety = 0;
