@@ -9,9 +9,17 @@ public class Game {
         int myHealth = 100, gold = 100, ammo = 0, notoriety = 0;
         Scanner myScanner = new Scanner(System.in);
 
+        //Asking for user name using scanner to save String name into variable
         System.out.println("Please Enter your name: ");
         playerName = myScanner.nextLine();
         System.out.println(playerName);
+
+        //Asking for user fav number
+        int userNum;
+        System.out.println("Please enter a number:");
+        userNum = myScanner.nextInt();
+        System.out.println(userNum);
+
         //Intro Text
         System.out.println("You have just been released from jail, with just " + gold + " gold to your name you head into town, what would you like to do?");
         System.out.println("Your current stats are:");
