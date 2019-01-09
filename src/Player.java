@@ -11,6 +11,5 @@ public class Player extends Main {
     public Player(String a){
         this.playerName = a;
     }
-
-
+    
 }
