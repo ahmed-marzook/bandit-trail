@@ -53,7 +53,8 @@ body {
 /* Game container start */
 .square-box{
   height: 425px;
-  width: 840px;
+  max-width: 840px;
+  width: 70%;
   margin: 0 auto;
   overflow: hidden;
   background: #555;
@@ -63,7 +64,7 @@ body {
 .square-box:before{
     content: "";
     display: block;
-    padding-top: 16%;
+    padding-top: 20%;
 }
 
 .square-content div {
