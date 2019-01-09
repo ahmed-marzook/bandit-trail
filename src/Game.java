@@ -4,14 +4,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class Game {
+public class Game extends Player {
 
     JFrame window;
     Container con;
-    JPanel titlePagePanel, startButtonPanel, mainTextPanel, inputPanel;
-    JLabel titlePageLabel;
+    JPanel titlePagePanel, startButtonPanel, mainTextPanel, inputPanel, playerPanel;
+    JLabel titlePageLabel, healthLabel, hpLabelNum, weaponLabel, weaponLabelName, goldLabel, goldLabelNum;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
-    Font playButtonFont = new Font("Arial", Font.PLAIN, 30);
+    Font defaultFont = new Font("Arial", Font.PLAIN, 30);
+    Font panelFont = new Font("Helvetica", Font.PLAIN,30);
     JButton playButton, enterB;
     JTextArea mainTextArea;
     JTextField userInputTextField;
@@ -46,7 +47,7 @@ public class Game {
         playButton = new JButton("PLAY");
         playButton.setBackground(Color.DARK_GRAY);
         playButton.setForeground(Color.BLACK);
-        playButton.setFont(playButtonFont);
+        playButton.setFont(defaultFont);
         playButton.addActionListener(tsHandler);
 
         titlePagePanel.add(titlePageLabel);
@@ -68,11 +69,11 @@ public class Game {
         mainTextPanel.setBackground(Color.BLUE);
         con.add(mainTextPanel);
 
-        mainTextArea = new JTextArea("Main text Area");
+        mainTextArea = new JTextArea("You have just been released from jail, with just 50 gold to your name you head into town\n What would you like to do?");
         mainTextArea.setBounds(100,100,600,250);
         mainTextArea.setBackground(Color.black);
         mainTextArea.setForeground(Color.white);
-        mainTextArea.setFont(playButtonFont);
+        mainTextArea.setFont(defaultFont);
         mainTextArea.setLineWrap(true); //allows to text to lap automatically
         mainTextPanel.add(mainTextArea);
 
@@ -90,9 +91,33 @@ public class Game {
         inputPanel.add(enterB);
         con.add(inputPanel);
 
+        playerPanel = new JPanel();
+        playerPanel.setBounds(100,20,600,50);
+        playerPanel.setBackground(Color.blue);
+        playerPanel.setLayout(new GridLayout(1,3));
+        con.add(playerPanel);
 
+        hpLabelNum = new JLabel();
+        hpLabelNum.setFont(panelFont);
+        hpLabelNum.setForeground(Color.white);
+        playerPanel.add(hpLabelNum);
+
+        goldLabelNum = new JLabel();
+        goldLabelNum.setFont(panelFont);
+        goldLabelNum.setForeground(Color.white);
+        playerPanel.add(goldLabelNum);
+
+        weaponLabelName = new JLabel("");
+        weaponLabelName.setFont(panelFont);
+        weaponLabelName.setForeground(Color.white);
+        playerPanel.add(weaponLabelName);
+
+        weaponLabelName.setText("Weapon: "+ weapon);
+        hpLabelNum.setText("Health: " + health);
+        goldLabelNum.setText("Gold: " + gold);
 
     }
+
 
     public class TitleScreenHandler implements ActionListener{
 
