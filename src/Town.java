@@ -8,6 +8,7 @@ public class Town extends Player {
     int currentTown = 0;
     boolean freshClothes = false;
     boolean haircut = false;
+    boolean maskBought = false;
     int amountOfSyringes = 2;
 
 
@@ -19,20 +20,21 @@ public class Town extends Player {
         System.out.println("\t  # Your health is at " + health);
         System.out.println("\t  # You have " + money + " gold");
         System.out.println("\t  # You have " + notoriety + "% notoriety");
+        System.out.println("\t  # You have " + strength + " strength");
         System.out.println("\t----------------------------"); // Player stats
 
 
-        System.out.println("\t\nWhat would you like to do?"); // Shops
-        System.out.println("\t1. Browse the shop");
-        System.out.println("\t2. Enter barbershop");
-        System.out.println("\t3. Rob bank");
-        System.out.println("\t4. Rob someone");
-        System.out.println("\t5. Browse the stables");
+        System.out.println("\t\nWhat would you like to do?\n"); // Shops
+        System.out.println("\t# 1. Browse the shop");
+        System.out.println("\t# 2. Enter barbershop");
+        System.out.println("\t# 3. Rob bank");
+        System.out.println("\t# 4. Rob someone");
+        System.out.println("\t# 5. Browse the stables");
         if(towns[currentTown] != ("Saint Denis")){
-            System.out.println("\t6. Travel to the next town");
+            System.out.println("\t# 6. Travel to the next town");
         }
         if(towns[currentTown].equals("Saint Denis")){
-            System.out.println("\t7. Visit harbour\n");
+            System.out.println("\t# 7. Visit harbour\n");
         }else System.out.println("\n");
 
     }
@@ -48,7 +50,9 @@ public class Town extends Player {
             System.out.println("\tYou enter a goods store in town.\n");
             System.out.println("\tShopkeeper: Welcome, would you like to purchase?\n");
 
-            System.out.println("\t# 1. Revolver - 20 gold\n\t# 2. Shotgun - 40 gold\n\t# 3. Mask - 5 gold\n\t# 4. Clothes - 10 gold\n\t# 5. Exit");
+            System.out.println("\t# 1. Revolver - 20 gold\n\t# 2. Shotgun - 40 gold" +
+                    "\n\t# 3. Mask - 30 gold\n\t# 4. Clothes - 10 gold" +
+                    "\n\t# 5. Syringe - 15 gold\n\t# 6. Exit");
 
             String inputShop = in.nextLine(); //                    GETTING INPUT FROM THE USER
 
@@ -57,8 +61,8 @@ public class Town extends Player {
                 if (money >= 20) {
 
                     money -= 20;
-                    System.out.println("\nYou bought a revolver (strength increased to 5)\n");
-                    strength = 5;
+                    System.out.println("\nYou bought a revolver (strength is now 2)\n");
+                    strength = 2;
 
                 } else System.out.println("\nYou cannot afford a revolver");
 
@@ -67,20 +71,23 @@ public class Town extends Player {
                 if (money >= 40) {
 
                     money -= 40;
-                    System.out.println("\nYou bought a shotgun (strength increased to 8\n");
-                    strength = 8;
+                    System.out.println("\nYou bought a shotgun (strength is now 3)\n");
+                    strength = 3;
 
                 } else System.out.println("\nYou cannot afford a shotgun");
 
             } else if (inputShop.equals("3")) {
 
-                if (money >= 5) {
+                if (maskBought == true) {
+                    System.out.println("\nSorry, we are all out of masks, try the next town over.");
+                } else if (money >= 30) {
 
                     if (mask == false) {
 
-                        money -= 5;
+                        money -= 30;
                         System.out.println("\nYou have bought a mask (this will hide your identity when commiting crimes)");
                         mask = true;
+                        maskBought = true;
 
                     } else System.out.println("\n\tYou already own a mast.\n");
 
@@ -100,6 +107,22 @@ public class Town extends Player {
                     } else System.out.println("\n\tYou have already bought clothes in this town.\n");
 
                 } else System.out.println("\nYou cannot afford clothes");
+
+            } else if (inputShop.equals("5")){ // SHOP INPUT 2
+
+                if (amountOfSyringes <= 0) {
+
+                    System.out.println("\tShopkeeper: There are no syringes left.\n");
+
+                } else if (amountOfSyringes > 0) {
+
+                    System.out.println("\nYou bought then injected yourself with the dirty syringe. " +
+                            "( - 15 gold & + 10 health)\n");
+                    amountOfSyringes = amountOfSyringes - 1;
+                    money = money - 15;
+                    health = health + 10;
+
+                }
 
             }
 
@@ -130,20 +153,24 @@ public class Town extends Player {
         } else if (input.equals("3")) { // Main screen input 2
 
             int outcome = rand.nextInt(10);
+            int difficulty;
 
-            if (outcome >= 6) {
+            if (strength == 1) {difficulty=6;} else if (strength == 2) {difficulty=7;} else {difficulty=9;}
+
+            if (outcome >= difficulty) {
 
                 System.out.println("\tYou were caught robbing the bank! ( - 40 health)\n");
                 health = health - 40;
 
-            } else if (outcome < 6) {
+            } else if (outcome < difficulty) {
 
                 System.out.println("\n\tYou robbed the bank! ( + 60 gold & + 70 notoriety)\n");
                 money = money + 60;
-                notoriety = notoriety + 70;
+                if(mask==false){
+                    notoriety += 70;
+                } else System.out.println("\nYou did not gain noteriety as you were wearing a mask"); mask = false;
 
             }
-
 
         } else if (input.equals("4")) { // Main screen input 2
 
@@ -158,7 +185,9 @@ public class Town extends Player {
 
                 System.out.println("\nYou robbed someone! ( + 15 gold & + 40 notoriety)\n");
                 money = money + 15;
-                notoriety = notoriety + 40;
+                if(mask==false){
+                    notoriety += 40;
+                } else System.out.println("\nYou did not gain noteriety as you were wearing a mask"); mask = false;
 
             }
 
@@ -188,6 +217,7 @@ public class Town extends Player {
                 currentTown = currentTown + 1;
                 freshClothes = false;
                 haircut = false;
+                maskBought = false;
 
             } else System.out.println("\tYou have to own a horse to travel. " +
                     "(go to the stables to buy one)\n");
