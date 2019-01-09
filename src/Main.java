@@ -12,9 +12,12 @@ public class Main {
 
         System.out.println("\n\n\nYour journey starts here.\n(Type your name then press enter)\n");
         String name = in.nextLine();
-        System.out.println("\nHello " + name + ", good luck.");
+        Player player = new Player(name);
+        System.out.println("\nHello " + name + ", good luck.\n\n\n\n");
 
 
     }
+
+
 
 }
