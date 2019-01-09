@@ -14,13 +14,12 @@ public class Main {
         int currentTown = 0;
 
         // Shop variables
-        int amountOfSyringes = 4;
+        boolean mask = false;
 
         // Player variables
         boolean playerOwnsHorse = false;
         boolean freshClothes = false;
         boolean haircut = false;
-        boolean mask = false;
         int health = 100;
         int money = 50;
         int notoriety = 0;
