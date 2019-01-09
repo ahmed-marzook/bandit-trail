@@ -17,7 +17,6 @@ public class Main extends Town{
         x.pause(2000);
         System.out.println("\n\n\nYour journey starts here.\n(Type your name then press enter)\n");
         String name = in.nextLine();
-        Player player = new Player();
         x.pause(200);
         System.out.println("\nHello " + name + ", good luck.\n\n\n\n");
 
