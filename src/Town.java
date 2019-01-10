@@ -231,7 +231,7 @@ public class Town extends Player {
 
             String inputHarbour = in.nextLine();
 
-            if(money >= 150){
+            if(money >= 150&&inputHarbour.equals("1")){
 
                 System.out.println("/////////////////////////////////////////////////////////\n\n" +
                         "-- Well done you have won the game with a score of " + money + "! --");
