@@ -1,15 +1,10 @@
-public class Player extends Main {
+public class Player {
 
-
-    String playerName;
     boolean playerOwnsHorse = false;
+    boolean mask = false;
     int health = 100;
     int money = 50;
     int notoriety = 0;
+    int strength = 1;
 
-
-    public Player(String a){
-        this.playerName = a;
-    }
-    
 }
