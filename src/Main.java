@@ -21,8 +21,10 @@ public class Main extends Town{
         System.out.println("\nHello " + name + ", good luck.\n\n\n\n");
 
         x.pause(400);
+        System.out.println("\t ===========================& &===========================");
         System.out.println("\t\tYou have just been released from jail, " +
-                "\n\t\twith just 50 gold to your name you head into town...\n\n\n");
+                "\n\t\twith just 50 gold to your name you head into town...");
+        System.out.println("\t =========================================================\n\n\n");
 
         while(running){
 
