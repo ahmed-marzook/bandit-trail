@@ -14,13 +14,12 @@ public class Town extends Player {
 
     public void displayOptions() {
 
-        System.out.println("\nYou are currently in " + towns[currentTown]);
-
         System.out.println("\n\t----------------------------"); // Player stats
-        System.out.println("\t  # Your health is at " + health);
-        System.out.println("\t  # You have " + money + " gold");
-        System.out.println("\t  # You have " + notoriety + "% notoriety");
-        System.out.println("\t  # You have " + strength + " strength");
+        System.out.println("\t > You are in " + towns[currentTown]);
+        System.out.println("\t > Your health is at " + health);
+        System.out.println("\t > You have " + money + " gold");
+        System.out.println("\t > You have " + notoriety + "% notoriety");
+        System.out.println("\t > You have " + strength + " strength");
         System.out.println("\t----------------------------"); // Player stats
 
 
