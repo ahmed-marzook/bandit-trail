@@ -159,7 +159,7 @@ public class Town extends Player {
 
             if (outcome >= difficulty) {
 
-                System.out.println("\t-- You were caught robbing the bank! ( - 40 health) --\n");
+                System.out.println("\t-- You were shot while robbing the bank! ( - 40 health) --\n");
                 health = health - 40;
 
             } else if (outcome < difficulty) {
@@ -179,7 +179,7 @@ public class Town extends Player {
 
             if (outcome >= 8) {
 
-                System.out.println("\t-- You were caught robbing the someone! ( - 20 health) --\n");
+                System.out.println("\t-- You were hurt robbing the someone! ( - 20 health) --\n");
                 health = health - 10;
 
             } else if (outcome < 8) {
