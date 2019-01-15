@@ -30,7 +30,9 @@ public class Main extends Town{
 
             x.pause(200);
             town.displayOptions();
+            x.pause(700);
             town.pickOption();
+            x.pause(200);
 
         }
 

@@ -159,12 +159,14 @@ public class Town extends Player {
 
             if (outcome >= difficulty) {
 
-                System.out.println("\t-- You were shot while robbing the bank! ( - 40 health) --\n");
+                System.out.println("\t-- You were shot while robbing the bank! ( - 40 health) --\n" +
+                        "\t-- You lie low for a while --\n");
                 health = health - 40;
 
             } else if (outcome < difficulty) {
 
-                System.out.println("\n\t-- You robbed the bank! ( + 60 gold & + 70 notoriety) --\n");
+                System.out.println("\n\t-- You robbed the bank! ( + 60 gold & + 70 notoriety) --\n" +
+                        "\t-- You lie low for a while --\n");
                 money = money + 60;
                 if(mask==false){
                     notoriety += 70;
