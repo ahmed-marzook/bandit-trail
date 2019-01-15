@@ -131,8 +131,9 @@ body {
   margin: 0 auto;
   overflow: hidden;
   background-image: url('https://i.redd.it/o0od47n48c3y.gif');
-  background-size: contain;
+  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   display: block;
   outline: 5px dashed #677b63;
 }
