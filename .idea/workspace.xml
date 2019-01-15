@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9eb288e8-5204-45a7-8a80-00bfb7cb4cdc" name="Default Changelist" comment="" />
+    <list default="true" id="9eb288e8-5204-45a7-8a80-00bfb7cb4cdc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Town.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Town.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="419">
@@ -29,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Town.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3600">
-              <caret line="241" selection-start-line="241" selection-end-line="241" />
+            <state relative-caret-position="80">
+              <caret line="181" column="81" selection-start-line="181" selection-start-column="81" selection-end-line="181" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,9 +64,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/BanditTrail.java" />
-        <option value="$PROJECT_DIR$/src/Town.java" />
         <option value="$PROJECT_DIR$/src/Player.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Town.java" />
       </list>
     </option>
   </component>
@@ -150,7 +152,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26752505" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -211,8 +212,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Town.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3600">
-          <caret line="241" selection-start-line="241" selection-end-line="241" />
+        <state relative-caret-position="80">
+          <caret line="181" column="81" selection-start-line="181" selection-start-column="81" selection-end-line="181" selection-end-column="81" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
