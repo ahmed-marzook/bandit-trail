@@ -14,20 +14,21 @@ public class Game extends Player {
 
     JFrame window;
     Container con;
-    JPanel titlePagePanel, startButtonPanel, mainTextPanel, inputPanel, playerPanel;
+    JPanel titlePagePanel, startButtonPanel, mainTextPanel, inputPanel, playerPanel,inputPanelTwo;
     JLabel imageLabel, titlePageLabel, hpLabelNum, weaponLabelName, goldLabelNum, strengthLabelNum, notorietyLabelNum;
     Font titleFont = new Font("PixelMPlus10", Font.PLAIN, 80);
     Font defaultFont = new Font("PixelMPlus10", Font.PLAIN, 30);
     Font panelFont = new Font("PixelMPlus10", Font.PLAIN,20);
     Font gameOver = new Font("Times New Roman", Font.PLAIN,80);
     Font mainTextAreaFont = new Font("PixelMPlus10", Font.PLAIN,20);
-    JButton playButton, enterB;
+    JButton playButton, enterB, attack, defend, run;
     JTextArea mainTextArea;
     JTextField userInputTextField;
-    String text;
+    String yourChoice;
 
     TitleScreenHandler tsHandler = new TitleScreenHandler();
     ChoiceHandler choiceHandler = new ChoiceHandler();
+    FightHandler fightHandler = new FightHandler();
 
     Random rand = new Random(); //RANDOM UTIL
 
@@ -96,7 +97,7 @@ public class Game extends Player {
         mainTextArea.setBackground(Color.decode("#90806C"));
         mainTextArea.setForeground(Color.white);
         mainTextArea.setFont(mainTextAreaFont);
-        mainTextArea.setLineWrap(true); //allows to text to lap automatically
+        mainTextArea.setLineWrap(true); //allows to yourChoice to lap automatically
         mainTextPanel.add(mainTextArea);
 
         inputPanel = new JPanel();
@@ -244,32 +245,42 @@ public class Game extends Player {
         updateStats();
         userInputTextField.setText(null);
         position = "Bank";
-        int outcome = rand.nextInt(10);
-        int difficulty;
 
-        if (strength == 1) {difficulty=6;} else if (strength == 2) {difficulty=7;} else {difficulty=9;}
+        enterB.setVisible(false);
+        userInputTextField.setVisible(false);
+        inputPanel.setVisible(false);
 
-        if (outcome >= difficulty) {
+        attack = new JButton("Attack");
+        attack.setForeground(Color.red);
+        attack.setFont(defaultFont);
+        attack.setFocusPainted(false);
+        attack.addActionListener(fightHandler);
+        attack.setActionCommand("attack");
 
-            mainTextArea.setText("You were shot while robbing the bank!\n( - 40 health)\n1) Runaway");
-            health -= 40;
-            updateStats();
+        defend = new JButton("Defend");
+        defend.setForeground(Color.green);
+        defend.setFont(defaultFont);
+        defend.setFocusPainted(false);
+        defend.addActionListener(fightHandler);
+        defend.setActionCommand("defend");
 
-        } else if (outcome < difficulty) {
+        run = new JButton("Run");
+        run.setForeground(Color.blue);
+        run.setFont(defaultFont);
+        run.setFocusPainted(false);
+        run.addActionListener(fightHandler);
+        run.setActionCommand("run");
 
-            gold += 60;
-
-            if(mask==false){
-                mainTextArea.setText("You robbed the bank!\n( + 60 gold & + 70 notoriety)\n1) Walk out Victoriously");
-                notoriety += 70;
-            } else {
-                mainTextArea.setText("You robbed the bank!\n( + 60 gold & + 0 notoriety)" +
-                        "You did not gain any notoriety as you were wearing a mask\n1) Slink into the Shadows");
-                mask = false;
-            }
-
-            updateStats();
-        }
+        inputPanelTwo = new JPanel();
+        inputPanelTwo.setBackground(Color.decode("#90806C"));
+        inputPanelTwo.setBounds(250,350,300,150);
+        inputPanelTwo.setLayout(new GridLayout(3,1));
+        inputPanelTwo.add(attack);
+        inputPanelTwo.add(defend);
+        inputPanelTwo.add(run);
+        con.add(inputPanelTwo);
+        mainTextArea.setText("You have entered the bank and come across a Guard defeat the guard to gain the loot" +
+                "\nGuard HP");
 
     }
 
@@ -310,11 +321,11 @@ public class Game extends Player {
     public class ChoiceHandler implements ActionListener{
         public  void actionPerformed(ActionEvent event){
 
-            text = userInputTextField.getText();
+            yourChoice = userInputTextField.getText();
 
             switch (position){
                 case "First Town":
-                    switch (text){
+                    switch (yourChoice){
                         case "1": shop(); break;
                         case "2": barberShop(); break;
                         case "3": robBank(); break;
@@ -324,7 +335,7 @@ public class Game extends Player {
                     }
                     break;
                 case "Shop":
-                    switch (text){
+                    switch (yourChoice){
                         case "1":
                             userInputTextField.setText(null);
                             if (gold >= 20) {
@@ -405,12 +416,12 @@ public class Game extends Player {
                     }
                     break;
                 case "Rob Someone":
-                    switch (text){
+                    switch (yourChoice){
                         case "1": updateStats(); town(); break;
                     }
                     break;
                 case "Barber":
-                    switch (text) {
+                    switch (yourChoice) {
                         case "1":
                             userInputTextField.setText(null);
                             if (gold < 20) {
@@ -430,12 +441,12 @@ public class Game extends Player {
                     }
                     break;
                 case "Bank":
-                    switch (text) {
+                    switch (yourChoice) {
                         case "1": updateStats(); town(); break;
                     }
                     break;
                 case "Stable":
-                    switch (text){
+                    switch (yourChoice){
                         case "1":
                             userInputTextField.setText(null);
                             if (gold >= 50) {
@@ -450,7 +461,7 @@ public class Game extends Player {
                     }
                     break;
                 case "Another Town":
-                    switch (text){
+                    switch (yourChoice){
                         case "1":
                             userInputTextField.setText(null);
                             updateStats(); town(); break;
@@ -472,5 +483,39 @@ public class Game extends Player {
             }
         }
     }
+    public class FightHandler implements ActionListener {
 
+        public void actionPerformed(ActionEvent event) {
+
+            String yourChoice = event.getActionCommand();
+
+            switch (position){
+                case "Bank":
+                    switch (yourChoice){
+                        case "run":
+                            attack.setVisible(false);
+                            defend.setVisible(false);
+                            run.setVisible(false);
+                            inputPanelTwo.setVisible(false);
+                            inputPanelTwo.setEnabled(false);
+                            attack.setEnabled(false);
+                            defend.setEnabled(false);
+                            run.setEnabled(false);
+
+                            inputPanel.setVisible(true);
+                            enterB.setVisible(true);
+                            userInputTextField.setVisible(true);
+                            updateStats();
+                            town();
+                            break;
+                        case "attack":
+                            break;
+                        case "defend":
+                            break;
+                    }
+                    break;
+            }
+
+        }
+    }
 }
