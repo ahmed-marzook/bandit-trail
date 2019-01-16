@@ -28,11 +28,10 @@ public class Main extends Town{
 
         while(running){
 
-            x.pause(200);
+            x.pause(700);
             town.displayOptions();
             x.pause(700);
             town.pickOption();
-            x.pause(200);
 
         }
 
