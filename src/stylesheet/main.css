@@ -91,6 +91,14 @@ body {
     color: red;
     text-decoration: underline;
 }
+
+.bottom-txt{
+  text-align: center;
+}
+
+.bottom-txt b{
+  color: red;
+}
 /* Game contain end  */
 
 
