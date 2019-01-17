@@ -1,4 +1,4 @@
-# BANDIT TRAIL
+# BANDIT TRAIL =]
 
   ##  Team Memebers
 - Ahmed Marzook
