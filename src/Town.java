@@ -50,7 +50,7 @@ public class Town extends Player {
             System.out.println("\tShopkeeper: Welcome, would you like to purchase?\n");
 
             System.out.println("\t# 1. Revolver - 20 gold\n\t# 2. Shotgun - 40 gold" +
-                    "\n\t# 3. Mask - 30 gold\n\t# 4. Clothes - 10 gold" +
+                    "\n\t# 3. Mask - 30 gold\n\t# 4. Clothes - 20 gold" +
                     "\n\t# 5. Syringe - 15 gold\n\t# 6. Exit");
 
             String inputShop = in.nextLine(); //                    GETTING INPUT FROM THE USER
@@ -99,8 +99,9 @@ public class Town extends Player {
 
                     if (freshClothes == false) {
 
-                        money -= 10;
-                        System.out.println("\n-- You have bought a fresh set of clothes. ( - 40% notoriety) --\n");
+                        money -= 20;
+                        System.out.println("\n-- You have bought a fresh set of clothes. " +
+                                "( - 20 gold & - 40% notoriety) --\n");
                         notoriety = notoriety - 40;
                         freshClothes = true;
 
