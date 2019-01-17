@@ -167,3 +167,9 @@ Outcomes
 2.  You have successfully robbed him but he remembers your face, you have gained 40G (If the sheriff sees you, he will chase you)
     
 3.  The man beats you up, leaving you very wounded and unconscious for a day, when you wake up you are in the town hospital. (You lose 25G and 35HP)
+# GUI
+This is instructions on how to setup and run the GUI this instructions are mainly for Mac as the program has been optimsied for that operating system specifically.
+
+1. Please install the latest version of Java JDK 11
+2. Please install the correct font for optimal experience: [Font Download Link](https://github.com/GoldenDrop/Kiokuryou_2D/tree/master/2D%20Kiokuryoku/Assets/Font)
+3. Use this command on mac if the program does not run when you click it make sure your on the correct folder in command line: `java -jar BanditTrail2.jar`
