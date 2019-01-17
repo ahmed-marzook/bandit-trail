@@ -19,9 +19,9 @@ public class Game extends Player {
     Font titleFont = new Font("PixelMPlus10", Font.PLAIN, 80);
     Font defaultFont = new Font("PixelMPlus10", Font.PLAIN, 30);
     Font panelFont = new Font("PixelMPlus10", Font.PLAIN,20);
-    Font gameOver = new Font("Times New Roman", Font.PLAIN,80);
+    Font gameOver = new Font("PixelMPlus10", Font.BOLD,60);
     Font mainTextAreaFont = new Font("PixelMPlus10", Font.PLAIN,20);
-    JButton playButton, enterB, attack, defend, run;
+    JButton playButton, enterB, attack, run;
     JTextArea mainTextArea;
     JTextField userInputTextField;
     String yourChoice;
@@ -31,6 +31,7 @@ public class Game extends Player {
     FightHandler fightHandler = new FightHandler();
 
     Random rand = new Random(); //RANDOM UTIL
+    int guardHp = 30;
 
     private ImageIcon horseBanditImage;
 
@@ -66,7 +67,7 @@ public class Game extends Player {
 
         playButton = new JButton("PLAY");
         playButton.setFocusPainted(false);
-        playButton.setBackground(Color.blue);
+        playButton.setBackground(Color.decode("#90806C"));
         playButton.setForeground(Color.decode("#8D2011"));
         playButton.setFont(defaultFont);
         playButton.addActionListener(tsHandler);
@@ -149,6 +150,37 @@ public class Game extends Player {
         weaponLabelName.setForeground(Color.white);
         playerPanel.add(weaponLabelName);
 
+        //Fight scene buttons
+        attack = new JButton("Attack");
+        attack.setForeground(Color.red);
+        attack.setFont(defaultFont);
+        attack.setFocusPainted(false);
+        attack.addActionListener(fightHandler);
+        attack.setActionCommand("attack");
+
+        run = new JButton("Run");
+        run.setForeground(Color.blue);
+        run.setFont(defaultFont);
+        run.setFocusPainted(false);
+        run.addActionListener(fightHandler);
+        run.setActionCommand("run");
+
+        inputPanelTwo = new JPanel();
+        inputPanelTwo.setBackground(Color.decode("#90806C"));
+        inputPanelTwo.setBounds(250,350,300,150);
+        inputPanelTwo.setLayout(new GridLayout(2,1));
+        inputPanelTwo.add(attack);
+        inputPanelTwo.add(run);
+        con.add(inputPanelTwo);
+
+        attack.setVisible(false);
+        run.setVisible(false);
+        inputPanelTwo.setVisible(false);
+        inputPanelTwo.setEnabled(false);
+        attack.setEnabled(false);
+        run.setEnabled(false);
+        //end
+
         con.revalidate();
         con.repaint();
 
@@ -168,18 +200,35 @@ public class Game extends Player {
         strengthLabelNum.setText("STR: " + strength);
         notorietyLabelNum.setText("NOTR: " + notoriety);
 
+        int score = health + strength + gold;
         if(health <= 0){
 
             mainTextArea.setForeground(Color.red);
             mainTextArea.setFont(gameOver);
-            mainTextArea.setText("YOU ARE\nDEAD");
+            mainTextArea.setText("YOU ARE\nDEAD" + "\nYour score was: "+ score);
+            attack.setVisible(false);
+            run.setVisible(false);
+            inputPanelTwo.setVisible(false);
+            inputPanelTwo.setEnabled(false);
+            attack.setEnabled(false);
+            run.setEnabled(false);
+            userInputTextField.setVisible(false);
+            inputPanel.setVisible(false);
 
 
         } else if(notoriety >= 100){
 
             mainTextArea.setForeground(Color.red);
             mainTextArea.setFont(gameOver);
-            mainTextArea.setText("YOU WERE\nCAUGHT");
+            mainTextArea.setText("YOU WERE\nCAUGHT" + "\nYour score was: "+ score);
+            attack.setVisible(false);
+            run.setVisible(false);
+            inputPanelTwo.setVisible(false);
+            inputPanelTwo.setEnabled(false);
+            attack.setEnabled(false);
+            run.setEnabled(false);
+            userInputTextField.setVisible(false);
+            inputPanel.setVisible(false);
 
         }
     }
@@ -196,6 +245,16 @@ public class Game extends Player {
 
 
     public void town(){
+        attack.setVisible(false);
+        run.setVisible(false);
+        inputPanelTwo.setVisible(false);
+        inputPanelTwo.setEnabled(false);
+        attack.setEnabled(false);
+        run.setEnabled(false);
+        enterB.setVisible(true);
+        userInputTextField.setVisible(true);
+        inputPanel.setVisible(true);
+
         updateStats();
         userInputTextField.setText(null);
         position = "First Town";
@@ -245,43 +304,85 @@ public class Game extends Player {
         updateStats();
         userInputTextField.setText(null);
         position = "Bank";
+        attack.setText("Attack");
+        run.setText("Run");
+
+        attack.setVisible(true);
+        run.setVisible(true);
+        inputPanelTwo.setVisible(true);
+        inputPanelTwo.setEnabled(true);
+        attack.setEnabled(true);
+        run.setEnabled(true);
 
         enterB.setVisible(false);
         userInputTextField.setVisible(false);
         inputPanel.setVisible(false);
 
-        attack = new JButton("Attack");
-        attack.setForeground(Color.red);
-        attack.setFont(defaultFont);
-        attack.setFocusPainted(false);
-        attack.addActionListener(fightHandler);
-        attack.setActionCommand("attack");
+        mainTextArea.setText("You have entered the bank and come across a Guard defeat\nthe guard to gain the loot"+
+                "\n\nGuard: Look what we 'ave ere a lonely bandit." +
+                "\n\nGuard HP: " + guardHp + "\n\nWhat do you want to do?");
 
-        defend = new JButton("Defend");
-        defend.setForeground(Color.green);
-        defend.setFont(defaultFont);
-        defend.setFocusPainted(false);
-        defend.addActionListener(fightHandler);
-        defend.setActionCommand("defend");
+    }
 
-        run = new JButton("Run");
-        run.setForeground(Color.blue);
-        run.setFont(defaultFont);
-        run.setFocusPainted(false);
-        run.addActionListener(fightHandler);
-        run.setActionCommand("run");
+    public void playerAttack(){
+        position = "player Attack";
+        attack.setText("continue");
+        run.setText("");
 
-        inputPanelTwo = new JPanel();
-        inputPanelTwo.setBackground(Color.decode("#90806C"));
-        inputPanelTwo.setBounds(250,350,300,150);
-        inputPanelTwo.setLayout(new GridLayout(3,1));
-        inputPanelTwo.add(attack);
-        inputPanelTwo.add(defend);
-        inputPanelTwo.add(run);
-        con.add(inputPanelTwo);
-        mainTextArea.setText("You have entered the bank and come across a Guard defeat the guard to gain the loot" +
-                "\nGuard HP");
+        int playerDamage = 0;
 
+        if (strength == 3){
+            playerDamage = rand.nextInt(10)+ 7;
+
+        }else if(strength == 2){
+
+            playerDamage = rand.nextInt(8)+ 5;
+
+        }else{
+
+            playerDamage = rand.nextInt(5)+ 2;
+
+        }
+
+        mainTextArea.setText("You attacked the Guard\nYou gave the guard " + playerDamage + " damage!");
+
+        guardHp -= playerDamage;
+    }
+
+    public void guardAttack() {
+        position = "guardAttack";
+
+        int guardDamage = 0;
+
+        guardDamage = rand.nextInt(20)+5;
+
+        mainTextArea.setText("The Guard fought back\nThe guard gave you " + guardDamage + " damage!" +
+                "\n\nWhat do you want to do next?");
+
+        health -= guardDamage;
+        updateStats();
+
+        attack.setText("continue");
+        run.setText("");
+
+    }
+
+    public void win(){
+        position = "win";
+
+        gold += 50;
+        if(mask == false){
+            mainTextArea.setText("You have successfully defeated the guard.\nCrowd: Cowers in fear as you swagger over to the counter" +
+                    "\nYou point your " + weapon + "\n\nBandit: Hand over the gold\n\n(+ 50 Gold & + 50 notoriety)");
+            notoriety += 50;
+            Game.infoBox("Due to not having a mask everyone recognises you");
+        } else {
+            mainTextArea.setText("You have successfully defeated the guard.\nCrowd: Cowers in fear as you swagger over to the counter" +
+                    "\nYou point your " + weapon + "\n\nBandit: Hand over the gold\n\n(+ 50 Gold)");
+            Game.infoBox("Due to having a mask no one recognised you");
+            mask = false;
+        }
+        updateStats();
     }
 
     public void barberShop() {
@@ -304,8 +405,18 @@ public class Game extends Player {
     public void anotherTown(){
         userInputTextField.setText(null);
         position = "Another Town";
-        mainTextArea.setText("You are outside the Town Gates\n What do you want to do?\n1) To go back\n2) Continue on your adventure");
+        mainTextArea.setText("You are outside the Town Gates\n What do you want to do?\n1) To go back\n2) Continue on your adventure (End)");
         updateStats();
+    }
+
+    public void endGame(){
+        int score = health + strength + gold;
+        mainTextArea.setText("You start your journey to the next town..." +
+                "\n(Your hair grows)\nNEW AREA STILL IN DEVELOPMENT" +
+                "\n\nYour Score is:" + score);
+        freshClothes = false;
+        haircut = false;
+        maskBought = false;
     }
 
 
@@ -328,7 +439,11 @@ public class Game extends Player {
                     switch (yourChoice){
                         case "1": shop(); break;
                         case "2": barberShop(); break;
-                        case "3": robBank(); break;
+                        case "3":
+                            if (guardHp < 1){
+                                Game.errorBox("You already robbed the bank");
+                            }else robBank();
+                            break;
                         case "4": robSomeone(); break;
                         case "5": stables(); break;
                         case "6": anotherTown(); break;
@@ -401,11 +516,13 @@ public class Game extends Player {
 
                             } else if (amountOfSyringes > 0) {
 
-                                Game.infoBox("You bought then injected yourself with the dirty syringe." +
-                                        "\n( - 15 gold & + 10 health)");
-                                amountOfSyringes = amountOfSyringes - 1;
-                                gold -= 15;
-                                health += 10;
+                                if (gold >= 15) {
+                                    Game.infoBox("You bought then injected yourself with the dirty syringe." +
+                                            "\n( - 15 gold & + 10 health)");
+                                    amountOfSyringes = amountOfSyringes - 1;
+                                    gold -= 15;
+                                    health += 10;
+                                } else Game.errorBox("You cannot afford syringes");
                             }
                             updateStats();
                             break;
@@ -468,11 +585,7 @@ public class Game extends Player {
                         case "2":
                             if (playerOwnsHorse) {
 
-                                System.out.println("You start your journey to the next town..." +
-                                        "\n(Your hair grows)\n NEW AREA STILL IN DEVELOPMENT");
-                                freshClothes = false;
-                                haircut = false;
-                                maskBought = false;
+                                endGame();
 
                             } else mainTextArea.setText("You have to own a horse to travel. " +
                                     "\n(go to the stables to buy one)\n1) Go back to Town");
@@ -494,12 +607,10 @@ public class Game extends Player {
                     switch (yourChoice){
                         case "run":
                             attack.setVisible(false);
-                            defend.setVisible(false);
                             run.setVisible(false);
                             inputPanelTwo.setVisible(false);
                             inputPanelTwo.setEnabled(false);
                             attack.setEnabled(false);
-                            defend.setEnabled(false);
                             run.setEnabled(false);
 
                             inputPanel.setVisible(true);
@@ -509,8 +620,37 @@ public class Game extends Player {
                             town();
                             break;
                         case "attack":
+                            playerAttack();
+                            updateStats();
                             break;
-                        case "defend":
+                    }
+                    break;
+                case "player Attack":
+                    switch (yourChoice){
+                        case "attack":
+                            if (guardHp < 1){
+                                run.setVisible(false);
+                                run.setEnabled(false);
+                                win();
+                            } else {
+                                guardAttack();
+                            }
+                            updateStats();break;
+                    }
+                    break;
+                case "guardAttack":
+                    switch (yourChoice){
+                        case "attack":
+                            updateStats();
+                            robBank();
+                        break;
+                    }
+                    break;
+                case "win":
+                    switch (yourChoice){
+                        case "attack":
+                            updateStats();
+                            town();
                             break;
                     }
                     break;
