@@ -130,7 +130,7 @@ public class Town extends Player {
         } else if (input.equals("2")) {
 
             System.out.println("\n\t-- You enter a Barbershop in town --\n\n\tBarber: Would you like a trim?\n");
-            System.out.println("\t# 1. Get a hair cut - 20 gold\n\t# 2. Go back\n");
+            System.out.println("\t# 1. Get a hair cut - 30 gold\n\t# 2. Go back\n");
 
             String inputBarber = in.nextLine(); //                    GETTING INPUT FROM THE USER
 
@@ -142,9 +142,9 @@ public class Town extends Player {
 
                 } else if (haircut == false) {
 
-                    System.out.println("\tYou have got a hair cut ( - 60% notoriety)\n");
+                    System.out.println("\tYou have got a hair cut ( - 30 gold & - 60% notoriety)\n");
                     notoriety = notoriety - 60;
-                    money = money - 20;
+                    money = money - 30;
                     haircut = true;
 
                 } else System.out.println("\n\tYour hair is not long enough, try travelling.\n");
