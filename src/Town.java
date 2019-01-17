@@ -50,7 +50,7 @@ public class Town extends Player {
             System.out.println("\tShopkeeper: Welcome, would you like to purchase?\n");
 
             System.out.println("\t# 1. Revolver - 20 gold\n\t# 2. Shotgun - 40 gold" +
-                    "\n\t# 3. Mask - 30 gold\n\t# 4. Clothes - 10 gold" +
+                    "\n\t# 3. Mask - 30 gold\n\t# 4. Clothes - 20 gold" +
                     "\n\t# 5. Syringe - 15 gold\n\t# 6. Exit");
 
             String inputShop = in.nextLine(); //                    GETTING INPUT FROM THE USER
@@ -99,8 +99,9 @@ public class Town extends Player {
 
                     if (freshClothes == false) {
 
-                        money -= 10;
-                        System.out.println("\n-- You have bought a fresh set of clothes. ( - 40% notoriety) --\n");
+                        money -= 20;
+                        System.out.println("\n-- You have bought a fresh set of clothes. " +
+                                "( - 20 gold & - 40% notoriety) --\n");
                         notoriety = notoriety - 40;
                         freshClothes = true;
 
@@ -129,7 +130,7 @@ public class Town extends Player {
         } else if (input.equals("2")) {
 
             System.out.println("\n\t-- You enter a Barbershop in town --\n\n\tBarber: Would you like a trim?\n");
-            System.out.println("\t# 1. Get a hair cut - 20 gold\n\t# 2. Go back\n");
+            System.out.println("\t# 1. Get a hair cut - 30 gold\n\t# 2. Go back\n");
 
             String inputBarber = in.nextLine(); //                    GETTING INPUT FROM THE USER
 
@@ -141,9 +142,9 @@ public class Town extends Player {
 
                 } else if (haircut == false) {
 
-                    System.out.println("\tYou have got a hair cut ( - 60% notoriety)\n");
+                    System.out.println("\tYou have got a hair cut ( - 30 gold & - 60% notoriety)\n");
                     notoriety = notoriety - 60;
-                    money = money - 20;
+                    money = money - 30;
                     haircut = true;
 
                 } else System.out.println("\n\tYour hair is not long enough, try travelling.\n");
