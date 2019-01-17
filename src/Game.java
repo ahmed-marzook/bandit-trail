@@ -190,7 +190,7 @@ public class Game extends Player {
 
     public void playerSetup(){
         updateStats();
-        town();
+        introTown();
     }
 
     public void updateStats(){
@@ -244,6 +244,25 @@ public class Game extends Player {
     }
 
 
+    public void introTown(){
+        attack.setVisible(false);
+        run.setVisible(false);
+        inputPanelTwo.setVisible(false);
+        inputPanelTwo.setEnabled(false);
+        attack.setEnabled(false);
+        run.setEnabled(false);
+        enterB.setVisible(true);
+        userInputTextField.setVisible(true);
+        inputPanel.setVisible(true);
+
+        updateStats();
+        userInputTextField.setText(null);
+        position = "First Town";
+        mainTextArea.setText("You have just been released from jail, with just " + gold + " gold to your name you head into town...\n\nWhat would you like to do?" +
+                "\n1) Shop\n2) Barber Shop\n3) Rob a Bank\n4) Rob Someone\n5) Browse the Stables\n6) Go to another Town");
+        mainTextArea.setFont(mainTextAreaFont);
+    }
+
     public void town(){
         attack.setVisible(false);
         run.setVisible(false);
@@ -258,7 +277,7 @@ public class Game extends Player {
         updateStats();
         userInputTextField.setText(null);
         position = "First Town";
-        mainTextArea.setText("You have just been released from jail, with just 50 gold to your\nname you head into town\n\nWhat would you like to do?" +
+        mainTextArea.setText("\nYou are in Valentine town centre\nWhat would you like to do?" +
                 "\n1) Shop\n2) Barber Shop\n3) Rob a Bank\n4) Rob Someone\n5) Browse the Stables\n6) Go to another Town");
         mainTextArea.setFont(mainTextAreaFont);
     }
@@ -268,7 +287,7 @@ public class Game extends Player {
         userInputTextField.setText(null);
         position = "Shop";
         mainTextArea.setText("Howdy welcome to the shop please select your items\n\n" +
-                "\n1) Revolver - 20 gold\n2) Shotgun - 40 gold" + "\n3) Mask - 30 gold\n4) Clothes - 10 gold" +
+                "\n1) Revolver - 20 gold\n2) Shotgun - 40 gold" + "\n3) Mask - 30 gold\n4) Clothes - 20 gold" +
                 "\n5) Syringe - 15 gold\n6) Exit");
 
     }
@@ -370,15 +389,15 @@ public class Game extends Player {
     public void win(){
         position = "win";
 
-        gold += 50;
+        gold += 60;
         if(mask == false){
             mainTextArea.setText("You have successfully defeated the guard.\nCrowd: Cowers in fear as you swagger over to the counter" +
-                    "\nYou point your " + weapon + "\n\nBandit: Hand over the gold\n\n(+ 50 Gold & + 50 notoriety)");
+                    "\nYou point your " + weapon + "\n\nBandit: Hand over the gold\n\n(+ 60 Gold & + 50 notoriety)");
             notoriety += 50;
             Game.infoBox("Due to not having a mask everyone recognises you");
         } else {
             mainTextArea.setText("You have successfully defeated the guard.\nCrowd: Cowers in fear as you swagger over to the counter" +
-                    "\nYou point your " + weapon + "\n\nBandit: Hand over the gold\n\n(+ 50 Gold)");
+                    "\nYou point your " + weapon + "\n\nBandit: Hand over the gold\n\n(+ 60 Gold)");
             Game.infoBox("Due to having a mask no one recognised you");
             mask = false;
         }
@@ -405,7 +424,7 @@ public class Game extends Player {
     public void anotherTown(){
         userInputTextField.setText(null);
         position = "Another Town";
-        mainTextArea.setText("You are outside the Town Gates\n What do you want to do?\n1) To go back\n2) Continue on your adventure (End)");
+        mainTextArea.setText("You are outside the Town preparing for your journey\nWhat do you want to do?\n1) Go back\n2) Continue on your adventure (End)");
         updateStats();
     }
 
@@ -417,6 +436,9 @@ public class Game extends Player {
         freshClothes = false;
         haircut = false;
         maskBought = false;
+        inputPanel.setVisible(false);
+        enterB.setVisible(false);
+        userInputTextField.setVisible(false);
     }
 
 
@@ -453,24 +475,35 @@ public class Game extends Player {
                     switch (yourChoice){
                         case "1":
                             userInputTextField.setText(null);
-                            if (gold >= 20) {
-                                gold -= 20;
-                                Game.infoBox("You bought a Revolver\n(Your strength is now 2)");
-                                strength = 2;
-                                weapon = "Revolver";
 
-                            } else Game.errorBox("You are unable to afford a Revolver");
+                            if (weapon == "Revolver") {
+                                Game.errorBox("You already own a Revolver");
+                            } else {
+                                if (gold >= 20) {
+                                    gold -= 20;
+                                    Game.infoBox("You bought a Revolver\n(Your strength is now 2)");
+                                    strength = 2;
+                                    weapon = "Revolver";
+
+                                } else Game.errorBox("You are unable to afford a Revolver");
+                            }
                             updateStats();
                             break;
                         case "2":
                             userInputTextField.setText(null);
-                            if (gold >= 40) {
-                                gold -= 40;
-                                Game.infoBox("You bought a Shotgun\n(Your strength is now 3)");
-                                strength = 3;
-                                weapon = "Shotgun";
 
-                            } else Game.errorBox("You are unable to afford a Shotgun");
+                            if(weapon == "Shotgun"){
+                                Game.errorBox("You already own a Shotgun");
+                            } else {
+                                if (gold >= 40) {
+                                    gold -= 40;
+                                    Game.infoBox("You bought a Shotgun\n(Your strength is now 3)");
+                                    strength = 3;
+                                    weapon = "Shotgun";
+
+                                } else Game.errorBox("You are unable to afford a Shotgun");
+                            }
+
                             updateStats();
                             break;
                         case "3":
@@ -487,18 +520,18 @@ public class Game extends Player {
                                     mask = true;
                                     maskBought = true;
 
-                                } else Game.errorBox("You already own a mast.");
+                                } else Game.errorBox("You already own a mask.");
 
                             } else Game.errorBox("You cannot afford a mask");
                             updateStats();
                             break;
                         case "4":
                             userInputTextField.setText(null);
-                            if (gold >= 10) {
+                            if (gold >= 20) {
 
                                 if (freshClothes == false) {
 
-                                    gold -= 10;
+                                    gold -= 20;
                                     Game.infoBox("You have bought a fresh set of clothes.\n( - 40% notoriety)");
                                     notoriety -= 40;
                                     freshClothes = true;
